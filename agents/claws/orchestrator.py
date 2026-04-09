@@ -1,4 +1,5 @@
 from utils.llm_session import ask_llm
+from utils.model_manager import get_model_for_tier
 
 
 # -------------------------------------------------
@@ -9,9 +10,12 @@ def run_agent(agent_name, prompt):
     """Executes a specialized AetherClaw agent within the swarm."""
     log(f"Initializing Aether{agent_name.capitalize()} module...")
 
+    # Intelligence Tier Selection
+    tier = "STRATEGIC" if agent_name == "planner" else "TACTICAL"
+    intelligence_model = get_model_for_tier(tier)
+
     # Modular agent prompt conditioning
     if agent_name == "planner":
-
         prompt = f"""
 You are the AetherPlanner, a Principal Software Architect.
 Your objective is to decompose high-level strategic goals into a granular, executable technical blueprint.
@@ -26,7 +30,6 @@ REQUISITES:
 """
 
     elif agent_name == "developer":
-
         prompt = f"""
 You are the AetherDeveloper, a Senior Full-Stack Engineer.
 Your objective is to synthesize high-quality, efficient Python code based on the provided architectural blueprint.
@@ -42,7 +45,6 @@ CONSTRAINTS:
 """
 
     elif agent_name == "reviewer":
-
         prompt = f"""
 You are the AetherReviewer, a Chief Technical Auditor.
 Your objective is to perform a rigorous validation pass on the synthesized code, ensuring zero vulnerabilities, optimal complexity, and absolute functional correctness.
@@ -59,8 +61,8 @@ OUTPUT:
 Return the final, crystallized version of the code, incorporating all necessary hardening.
 """
 
-    # call unified AetherCore communication layer
-    response = ask_llm(prompt)
+    # call unified AetherCore communication layer with dynamic intelligence tier
+    response = ask_llm(prompt, model=intelligence_model)
 
     return response
 

@@ -1,4 +1,4 @@
-# 🌌 AetherClaw (v1.2.0-PRO)
+# 🌌 AetherClaw (v2.0.0-EVOLUTION)
 [![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![Branding: 3D Anime](https://img.shields.io/badge/Branding-3D%20Anime-blueviolet.svg)](#)
@@ -7,20 +7,20 @@
   <img src="assets/aetherclaw_logo_3d.png" alt="AetherClaw 3D Logo" width="300px">
 </p>
 
-> **AetherClaw** is a world-class autonomous multi-agent framework designed to architect, synthesize, and validate complex software systems with surgical precision. 
+> **AetherClaw** is a professional-grade autonomous multi-agent framework designed to solve real-world development challenges through tiered intelligence and tactical auditing.
 
-Built with the **AetherFlow** tri-agent reflexion loop, it transcends standard agentic workflows by integrating a live 3D WebGL Command Center, hardened safety protocols, and dynamic skill orchestration.
+Powered by the **AetherNexus** multi-model switching core and the **AetherFlow** tri-agent loop, AetherClaw v2.0 introduces production-grade security auditing and deep-web research capabilities.
 
 ---
 
-## 🌟 The AetherClaw Edge
+## 🌟 The AetherClaw Evolution
 
-| Feature | OpenClaw | Auto-GPT | **AetherClaw** |
+| Feature | OpenClaw | Nemo Claw | **AetherClaw v2.0** |
 | :--- | :---: | :---: | :---: |
-| **Logic Engine** | Conversational | Linear | **Iterative Reflexion (Tri-Agent)** |
+| **Logic Engine** | Conversational | Linear | **Tiered Intelligence (Strategic/Tactical)** |
 | **Visual Interface** | CLI | Terminal | **3D WebGL Glassmorphism UI** |
-| **Safety Layer** | Basic | Manual | **AetherGuard (Automatic Isolation)** |
-| **Skill Expansion** | Static Plugins | Multi-step | **Neural Skill Synthesis (AetherNexus)** |
+| **Security Pass** | Basic Check | Manual | **AetherAudit (Auto Leak/Vuln Scan)** |
+| **Research Layer** | None | Limited | **AetherScout (Deep Documentation Intake)** |
 | **Tone** | Neutral | Experimental | **Professional/Industrial** |
 
 ---

@@ -18,12 +18,15 @@ def get_session():
     return session
 
 
-def ask_llm(prompt, temperature=0.2, max_tokens=800):
-
+def ask_llm(prompt, temperature=0.2, max_tokens=2000, model=None):
+    """Executes a request to the AetherNexus intelligence layer."""
     s = get_session()
+    
+    # Dynamic model selection
+    target_model = model if model else MODEL_NAME
 
     payload = {
-        "model": MODEL_NAME,
+        "model": target_model,
         "messages": [
             {"role": "user", "content": prompt}
         ],
@@ -31,8 +34,10 @@ def ask_llm(prompt, temperature=0.2, max_tokens=800):
         "max_tokens": max_tokens
     }
 
-    r = s.post(API_URL, json=payload, timeout=600)
-
-    r.raise_for_status()
-
-    return r.json()["choices"][0]["message"]["content"]
+    try:
+        r = s.post(API_URL, json=payload, timeout=600)
+        r.raise_for_status()
+        return r.json()["choices"][0]["message"]["content"]
+    except Exception as e:
+        print(f"[AETHER-CORE] Nexus Communication Error: {e}")
+        raise
