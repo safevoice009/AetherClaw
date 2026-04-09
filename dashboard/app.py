@@ -209,10 +209,28 @@ if st.sidebar.button("🛑 SYSTEM PURGE"):
     st.sidebar.error("Halting all autonomous processes.")
 
 st.sidebar.markdown("---")
+st.sidebar.subheader("🛡️ Strategic AetherAudit")
+audit_path = st.sidebar.text_input("📁 Audit Path", value=".", help="Directory to scan for leaks and vulnerabilities.")
+if st.sidebar.button("🔍 INITIATE AUDIT"):
+    from skills.audit_skill import audit_directory
+    report = audit_directory(audit_path)
+    st.sidebar.info("Audit Report Synthesized.")
+    with st.expander("📄 View Audit Report", expanded=True):
+        st.code(report)
+
+st.sidebar.markdown("---")
+# Intelligence Nexus Display
+from utils.model_manager import get_model_for_tier, check_nexus_resonance
+strategic_model = get_model_for_tier("STRATEGIC")
+tactical_model = get_model_for_tier("TACTICAL")
+nexus_active = check_nexus_resonance() is not None
+
 st.sidebar.markdown(f"""
-**Status:** `OPERATIONAL`
-**Resonance:** `OPTIMAL`
-**Version:** `1.2.0-PRO`
+**Status:** `{"OPERATIONAL" if nexus_active else "NEXUS_OFFLINE"}`
+**Nexus Resonance:** `{"OPTIMAL" if nexus_active else "DISCONNECTED"}`
+**Strategic Model:** `{strategic_model}`
+**Tactical Model:** `{tactical_model}`
+**Version:** `2.0.0-EVOLUTION`
 """)
 
 # Main Dashboard
