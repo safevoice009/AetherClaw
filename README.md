@@ -86,7 +86,7 @@ AetherClaw is strictly governed by the [Autonomous Governance Framework (POLICY.
 ## 👥 Ownership & Strategic Leadership
 AetherClaw is architected and maintained with a focus on absolute autonomy and technical superiority by:
 
-[**@safevoice009**](https://github.com/safevoice009)
+[**Panther**](https://github.com/safevoice009)
 
 ---
 
