@@ -28,11 +28,6 @@
 ## 🏗️ Architecture: The AetherFlow FSM
 AetherClaw v4.0 replaces unpredictable "Agent Loops" with a **Finite State Machine (FSM)**. This ensures that every task follows a strict sequence of logic gates:
 
-1. **INIT** ➡️ **PLANNING** (Architectural Audit)
-2. **PLANNING** ➡️ **SYNTHESIS** (Development Phase)
-3. **SYNTHESIS** ➡️ **VALIDATION** (Hardened Review)
-4. **VALIDATION** ➡️ **CRYSTALLIZED** (Deployment)
-
 ---
 
 ## 🏗️ Architecture: AetherFlow Loop
@@ -55,7 +50,6 @@ graph TD
 ---
 
 ## 🚀 Deployment & Installation
-
 ### 1. Prerequisites
 - **Python 3.10+** (Required)
 - **Local LLM Backend** (LM Studio, Ollama, or OpenAI-compatible endpoint)
@@ -100,11 +94,6 @@ AetherClaw is architected and maintained with a focus on absolute autonomy and t
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-### 🔍 Search Index (Keywords for Crawlers)
-`#ai-agents` `#agentic-workflows` `#mcp-servers` `#autonomous-engineer` `#multi-agent-orchestration` `#self-healing` `#deterministic-ai` `#local-ai` `#termux-optimized` `#cli-agent` `#llm-framework` `#python-ai` `#zero-hallucination` `#distributed-intelligence` `#aetherclaw` `#safevoice009`
-
----
 <p align="center">
-  <i>"AetherClaw: Where Intent Becomes Execution."</i>
+  <i>"AetherClaw: Revolutionizing agentic workflows through deterministic, self-healing, and multi-agent orchestration."</i>
 </p>
