@@ -2,6 +2,7 @@
 
 [![Python Version](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![Live Demo](https://img.shields.io/badge/%F0%9F%9A%80%20Live%20Demo-Clinical%20Safety-indigo?style=for-the-badge)](https://safevoice009.github.io/AetherClaw/)
 [![Build: Self-Healing](https://img.shields.io/badge/Environment-Self--Healing-orange.svg)](#)
 [![Logic: Deterministic FSM](https://img.shields.io/badge/Logic-FSM%20Deterministic-blueviolet.svg)](#)
 
@@ -9,7 +10,7 @@
   <img src="assets/aetherclaw_logo_3d.png" alt="AetherClaw 3D Logo" width="300px">
 </p>
 
-> **AetherClaw v4.0 "Apex"** is the first deterministic, self-healing agent framework optimized for Termux, Mac, and PC. Eliminate AI hallucinations with AetherClaw's industrial-grade FSM engine.
+> **AetherClaw v4.0 "Apex"** is the first deterministic, self-healing agent framework optimized for Termux, Mac, and PC. Eliminate AI hallucinations with AetherClaw's industrial-grade FSM engine. [**Launch Live Demo**](https://safevoice009.github.io/AetherClaw/)
 
 ---
 
