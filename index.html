@@ -473,10 +473,10 @@
                         const box = el.getBoundingClientRect();
                         const x = (e.clientX - box.left) / box.width - 0.5;
                         const y = (e.clientY - box.top) / box.height - 0.5;
-                        el.style.transform = \`perspective(1000px) rotateX(\${y * -10}deg) rotateY(\${x * 10}deg) translateY(-8px)\`;
+                        el.style.transform = \`perspective(1000px) rotateX(${y * -10}deg) rotateY(${x * 10}deg) translateY(-8px)`;
                     });
                     el.addEventListener('mouseleave', () => {
-                        el.style.transform = \`perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)\`;
+                        el.style.transform = \`perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)`;
                     });
                 });
             } catch (e) {
@@ -526,10 +526,10 @@
             }[log.type];
 
             entry.innerHTML = \`
-                <span class=\"log-time\">\${new Date().toLocaleTimeString([], {hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit'})}</span>
-                <span class=\"log-tag\" style=\"color: \${color}\">[\${log.tag}]</span>
-                <span class=\"log-msg\">\${log.msg}</span>
-            \`;
+                <span class="log-time">${new Date().toLocaleTimeString([], {hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit'})}</span>
+                <span class="log-tag" style="color: ${color}">[${log.tag}]</span>
+                <span class="log-msg">${log.msg}</span>
+            `;
             consoleOutput.appendChild(entry);
             consoleOutput.scrollTop = consoleOutput.scrollHeight;
             
