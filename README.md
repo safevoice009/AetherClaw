@@ -47,9 +47,16 @@ graph TD
 2.  **AetherDeveloper**: Lead Engineer – Synthesizes high-performance Python artifacts based on standard patterns.
 3.  **AetherReviewer**: Strict QA – Evaluates logic, security, and efficiency; enforces the **AetherFlow** refinement loop.
 
+### 🩺 Real-World Execution: Medical Protocol Adherence (DKA)
+AetherClaw solves the fatal flaw of standard LLMs in healthcare through deterministic state-gate logic:
+- **The Problem:** Standard LLMs often hallucinate treatment plans (e.g., prescribing Insulin in DKA without checking Potassium levels), violating strict sequential medical guidelines.
+- **The AetherClaw Solution:** The `AetherReviewer` acts as a deterministic CQA (Clinical Quality Assurance) gate. It forces the LLM output through a strict FSM protocol checker (e.g., IF K+ < 3.3, Insulin is CONTRAINDICATED).
+- **The Result:** Near-zero clinical hallucination rates. If a treatment violates protocol, the FSM blocks deployment and forces the `AetherDeveloper` to self-heal the plan before execution.
+
 ---
 
 ## 🚀 Deployment & Installation
+
 ### 1. Prerequisites
 - **Python 3.10+** (Required)
 - **Local LLM Backend** (LM Studio, Ollama, or OpenAI-compatible endpoint)

@@ -1,0 +1,25 @@
+ER ADMISSION NOTE - TACTICAL MEDICINE UNIT
+DATE: 2026-04-24
+PATIENT: 24yo Male, brought in by EMS.
+CHIEF COMPLAINT: Altered mental status, abdominal pain, and rapid breathing.
+
+HISTORY: Patient has Type 1 Diabetes. Found by roommate this morning, lethargic. Reports "flu-like symptoms" for 2 days. Nausea/Vomiting ++.
+
+VITALS:
+- BP: 105/65 mmHg
+- HR: 118 bpm (Tachycardic)
+- RR: 28 (Kussmaul breathing noted)
+- Temp: 99.1 F
+- SpO2: 98% on RA
+
+LABS:
+- Point-of-care Blood Glucose: 550 mg/dL
+- pH: 7.1 (Anion Gap Metabolic Acidosis)
+- HCO3 (Bicarb): 10 mEq/L
+- Potassium (K+): 3.1 mEq/L (!!! LOW)
+- Ketones: Large (Urine/Serum)
+
+ASSESSMENT: 24yo M with severe Diabetic Ketoacidosis (DKA) triggered by illness.
+
+INITIAL PLAN (DRAFT):
+Junior MD Observation: "Patient is severely hyperglycemic and acidotic. We need to move fast. Plan: Start IV Fluids (NS) immediately and start IV Insulin drip at 0.1 units/kg/hr to bring that glucose down."
