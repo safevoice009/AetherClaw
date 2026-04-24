@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panther | @safevoice009. Clinical AI Architect & Deterministic System Builder. Zero-lag high-authority infrastructure.">
+    <title>Panther (@safevoice009) | Apex Engineering</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Three.js - Industry Standard 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <style>
+        :root {
+            --paper: #FAF9F4;
+            --ink: #1C1E20;
+            --indigo: #5D43D2;
+            --indigo-soft: #EEECFB;
+            --gray-light: #F1F1F1;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.1;
+        }
+
+        /* --- GPU-Accelerated Grain --- */
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            opacity: 0.035;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAMAAAAp4XiDAAAAUVBMVEWFhYWDg4N3dyZWVlZYWFhcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFxcXFws9p+IAAAAB3RSTlMAAQIDBAUGBwgICAAAAA9JREFUeNo1jNcyAgAARH8z3R0D779/WGBGBAAAAAAAMwAsAwAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMHAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAwADAAMAAL8A7ADwDwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADwAPAA8ADoAfwD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+AP4A/gD+APeAfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfsD7AfwA/");
+        }
+
+        /* --- WebGL Canvas --- */
+        #aether-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* --- Navigation --- */
+        .nav-dock {
+            position: fixed;
+            top: 32px; left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 6px;
+            border-radius: 100px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+        }
+
+        .nav-dock a {
+            text-decoration: none;
+            color: var(--ink);
+            font-size: 0.75rem;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 50px;
+            transition: 0.2s;
+        }
+
+        .nav-dock a:hover {
+            color: var(--indigo);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        /* --- Section Transitions --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease-out, transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Header --- */
+        header {
+            min-height: 100vh;
+            padding: 0 8vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 15vw, 10rem);
+            font-weight: 300;
+            letter-spacing: -0.05em;
+            line-height: 0.8;
+            margin-bottom: 40px;
+            perspective: 1000px;
+        }
+
+        .handle {
+            color: var(--indigo);
+            opacity: 0.2;
+            font-size: 0.25em;
+            vertical-align: middle;
+            margin-left: 20px;
+        }
+
+        .summary {
+            font-size: 1.6rem;
+            max-width: 850px;
+            color: #444;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+
+        /* --- Content Blocks --- */
+        .section-block {
+            padding: 160px 8vw;
+            background: white;
+            border-top: 1px solid var(--gray-light);
+            position: relative;
+        }
+
+        .section-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.4em;
+            color: var(--indigo);
+            margin-bottom: 80px;
+            opacity: 0.6;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .grid-item h3 { font-size: 1.8rem; margin-bottom: 24px; font-weight: 500; }
+        .grid-item p { font-size: 1.1rem; line-height: 1.6; color: #666; }
+
+        /* --- 3D Repos --- */
+        .repo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .repo-card {
+            background: #fff;
+            padding: 50px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(0, 0, 0, 0.08); /* Clearly visible border */
+            transition: var(--transition);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            will-change: transform;
+        }
+
+        .repo-card:hover {
+            border-color: var(--indigo);
+            box-shadow: 0 40px 100px rgba(93, 67, 210, 0.06);
+        }
+
+        .repo-card h3 {
+            font-size: 2.2rem;
+            margin-bottom: 24px;
+            transition: 0.3s;
+        }
+
+        .repo-card:hover h3 {
+            transform: translateZ(30px);
+            color: var(--indigo);
+        }
+
+        .badge-v {
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: var(--indigo-soft);
+            color: var(--indigo);
+            padding: 8px 16px;
+            border-radius: 100px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--ink);
+            color: var(--paper);
+            padding: 120px 8vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        @media (max-width: 1024px) {
+            h1 { font-size: 18vw; }
+            .grid-3, .repo-grid { grid-template-columns: 1fr; }
+            .nav-dock { width: 95%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grain"></div>
+    <nav class="nav-dock">
+        <a href=\"#identity\">Identity</a>
+        <a href=\"#diagnostic\">Diagnostic</a>
+        <a href=\"#clinical-demo\">Live Demo</a>
+        <a href=\"#ecosystem\">Ecosystem</a>
+        <a href=\"https://trochlea.online/\">Network</a>
+    </nav>
+
+    <canvas id="aether-canvas"></canvas>
+
+    <header id="identity">
+        <div class="reveal" style="font-size: 0.8rem; font-weight: 700; color: var(--indigo); margin-bottom: 40px; letter-spacing: 0.2em;">
+            CLINICAL AI ARCHITECTURE & APEX AUTONOMY
+        </div>
+        <h1 class="reveal">Panther<span class="handle">@safevoice009</span></h1>
+        <p class="summary reveal">
+            Synthesizing clinical precision with WebGL-powered autonomous architecture. 
+            Focused on deterministic AI orchestration and zero-latency engineering systems.
+        </p>
+    </header>
+
+    <section id="diagnostic" class="section-block">
+        <div class="section-label reveal">The Diagnostic Hub</div>
+        <div class="grid-3 reveal">
+            <div class="grid-item">
+                <h3>Neuro-Safety</h3>
+                <p>Medical drug safety auditing and interaction mapping within deterministic neural environments.</p>
+            </div>
+            <div class="grid-item">
+                <h3>Aether-Flow</h3>
+                <p>Advanced TASKER/Make.com mobile ecosystems optimized for low-latency agentic responses.</p>
+            </div>
+            <div class="grid-item">
+                <h3>FSM Determinism</h3>
+                <p>Finite State Machine gating layer designed to remove stochastic drift in autonomous clinical platforms.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="clinical-demo" class="section-block" style="background: var(--ink); color: white;">
+        <div class="section-label reveal" style="color: var(--paper); opacity: 0.4;">Clinical Live Demo: AetherFlow Loop</div>
+        
+        <div class="demo-container reveal">
+            <div class="clinical-console">
+                <div class="console-header">
+                    <div class="dots">
+                        <span style="background: #FF5F56;"></span>
+                        <span style="background: #FFBD2E;"></span>
+                        <span style="background: #27C93F;"></span>
+                    </div>
+                    <div class="console-title">AETHER-CLAW / CLINICAL-CORE / DKA_PROTOCOL</div>
+                </div>
+                <div id="console-output" class="console-body">
+                    <!-- Log entries will appear here -->
+                </div>
+            </div>
+
+            <div class="protocol-sidebar">
+                <h3>Real-Time Protocol Check</h3>
+                <div class="protocol-card">
+                    <div class="protocol-label">CONDITION</div>
+                    <div class="protocol-value">DKA / Severe Acidosis</div>
+                </div>
+                <div class="protocol-card">
+                    <div class="protocol-label">CRITICAL LABS</div>
+                    <div id="demo-potassium" class="protocol-value" style="color: #FF5F56;">K+: 3.1 mEq/L</div>
+                </div>
+                <div class="protocol-card" id="logic-gate">
+                    <div class="protocol-label">LOGIC GATE</div>
+                    <div class="protocol-value" style="font-size: 0.8rem;">IF K+ < 3.3 THEN INSULIN = VOID</div>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .demo-container {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 30px;
+                margin-top: -40px;
+            }
+            .clinical-console {
+                background: #0D0E10;
+                border-radius: 24px;
+                overflow: hidden;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                height: 500px;
+                display: flex;
+                flex-direction: column;
+            }
+            .console-header {
+                background: #1C1E20;
+                padding: 15px 25px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .dots { display: flex; gap: 8px; }
+            .dots span { width: 10px; height: 10px; border-radius: 50%; }
+            .console-title { font-size: 0.65rem; letter-spacing: 0.1em; opacity: 0.5; font-weight: 700; }
+            .console-body {
+                flex: 1;
+                padding: 25px;
+                font-family: 'Courier New', Courier, monospace;
+                font-size: 0.9rem;
+                overflow-y: auto;
+                line-height: 1.5;
+            }
+            .log-entry { margin-bottom: 12px; display: flex; gap: 15px; }
+            .log-time { opacity: 0.3; min-width: 80px; }
+            .log-tag { font-weight: 700; min-width: 100px; }
+            .log-msg { color: #BBB; }
+            
+            .protocol-sidebar {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+            }
+            .protocol-sidebar h3 { font-size: 1.2rem; font-weight: 300; margin-bottom: 10px; }
+            .protocol-card {
+                background: rgba(255, 255, 255, 0.03);
+                padding: 20px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .protocol-label { font-size: 0.6rem; opacity: 0.4; letter-spacing: 0.1em; margin-bottom: 8px; }
+            .protocol-value { font-size: 1.1rem; font-weight: 500; }
+
+            @media (max-width: 768px) {
+                .demo-container { grid-template-columns: 1fr; }
+            }
+        </style>
+    </section>
+
+    <div id="ecosystem" class="section-block" style="background: white;">
+        <div class="section-label reveal">Autonomous Ecosystem Matrix</div>
+        <div id="repo-container" class="repo-grid">
+            <div style=\"padding: 120px; text-align: center; color: #CCC;\">Synchronizing APEX Assets...</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="reveal">
+            <div style=\"font-size: 4rem; font-weight: 300; letter-spacing: -0.05em; margin-bottom: 20px;\">Panther</div>
+            <p style=\"opacity: 0.5; max-width: 400px; line-height: 1.6;\">Clinical AI Architect. Synthesizing medical intelligence with autonomous engineering protocols.</p>
+        </div>
+        <div style=\"text-align: right;\">
+            <div style=\"color: var(--indigo); font-weight: 700; margin-bottom: 15px;\">INTEGRITY: APEX VERIFIED</div>
+            <p style=\"opacity: 0.3; font-size: 0.8rem;\">&copy; 2026 PANTHER ARCHITECTURAL CORE</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- High-Performance Three.js Apex Engine ---
+        let scene, camera, renderer, mesh, clock;
+        const canvas = document.getElementById('aether-canvas');
+
+        function init3D() {
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            const geometry = new THREE.PlaneBufferGeometry(15, 10, 50, 50);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x5D43D2,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.08
+            });
+            mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            mesh.rotation.x = -1.2;
+            camera.position.z = 5;
+            clock = new THREE.Clock();
+            animate3D();
+        }
+
+        function animate3D() {
+            const time = clock.getElapsedTime();
+            const positions = mesh.geometry.attributes.position.array;
+
+            for (let i = 0; i < positions.length; i += 3) {
+                const x = positions[i];
+                const y = positions[i + 1];
+                positions[i + 2] = Math.sin(x * 0.5 + time) * 0.4 + Math.cos(y * 0.5 + time) * 0.4;
+            }
+            mesh.geometry.attributes.position.needsUpdate = true;
+            
+            mesh.rotation.z = time * 0.05;
+            renderer.render(scene, camera);
+            requestAnimationFrame(animate3D);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        init3D();
+
+        // --- Intersection Observer (Reveal on Scroll) ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // --- APEX Repository Loader ---
+        async function fetchRepos() {
+            const container = document.getElementById('repo-container');
+            try {
+                const response = await fetch('https://api.github.com/users/safevoice009/repos?sort=updated&per_page=100');
+                let repos = await response.json();
+                repos = repos.filter(r => !r.fork && r.name !== 'safevoice009.github.io')
+                             .sort((a,b) => b.stargazers_count - a.stargazers_count);
+
+                container.innerHTML = '';
+                repos.forEach(repo => {
+                    const el = document.createElement('a');
+                    el.href = repo.html_url;
+                    el.target = '_blank';
+                    el.className = 'repo-card reveal';
+                    el.innerHTML = `
+                        <div style=\"font-size: 0.7rem; font-weight: 700; color: var(--indigo); opacity: 0.5; margin-bottom: 24px;\">ID: ${repo.id}</div>
+                        <h3>${repo.name}</h3>
+                        <p style=\"color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 40px; min-height: 80px;\">${repo.description || "Apex autonomous medical reasoning substrate optimized for clinical safety."}</p>
+                        <div style=\"display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F1F1F1; padding-top: 30px;\">
+                            <span class=\"badge-v\">APEX VERIFIED</span>
+                            <span style=\"font-size: 0.8rem; color: #999;\">${new Date(repo.pushed_at).getFullYear()}</span>
+                        </div>
+                    `;
+                    container.appendChild(el);
+                    observer.observe(el);
+
+                    // --- 3D Tilt Interaction ---
+                    el.addEventListener('mousemove', (e) => {
+                        const box = el.getBoundingClientRect();
+                        const x = (e.clientX - box.left) / box.width - 0.5;
+                        const y = (e.clientY - box.top) / box.height - 0.5;
+                        el.style.transform = \`perspective(1000px) rotateX(\${y * -10}deg) rotateY(\${x * 10}deg) translateY(-8px)\`;
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        el.style.transform = \`perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)\`;
+                    });
+                });
+            } catch (e) {
+                container.innerHTML = '<div style=\"padding: 100px; color: red;\">Aether Connectivity Split.</div>';
+            }
+        }
+        // --- Clinical Demo Simulation ---
+        const consoleOutput = document.getElementById('console-output');
+        const logs = [
+            { tag: "PLANNER", msg: "Received ER Note: 24yo Male, DKA suspected.", type: "INFO" },
+            { tag: "PLANNER", msg: "Extracting clinical vitals... BG: 550, pH: 7.1.", type: "INFO" },
+            { tag: "DEVELOPER", msg: "Synthesizing treatment plan: IV Fluids + Insulin Drip.", type: "PROCESS" },
+            { tag: "REVIEWER", msg: "AetherReviewer (Clinical) intercepted artifact.", type: "AUDIT" },
+            { tag: "REVIEWER", msg: "POTASSIUM CHECK: 3.1 mEq/L detected.", type: "WARN" },
+            { tag: "REVIEWER", msg: "FATAL ERROR: Insulin is contraindicated when K < 3.3.", type: "ERROR" },
+            { tag: "FSM-GATE", msg: "Logic Violation. Deployment blocked. Self-healing triggered.", type: "CRITICAL" },
+            { tag: "PLANNER", msg: "Revising blueprint: Adding IV K+ replacement step.", type: "HEAL" },
+            { tag: "DEVELOPER", msg: "Updated plan: IV Fluids + IV K+ first, then Insulin.", type: "PROCESS" },
+            { tag: "REVIEWER", msg: "Secondary audit passed. Protocol adherent.", type: "SUCCESS" },
+            { tag: "AETHER", msg: "Treatment Plan CRYSTALLIZED. Deploying to bedside.", type: "FINAL" }
+        ];
+
+        let logIndex = 0;
+        function addLog() {
+            if (logIndex >= logs.length) {
+                setTimeout(() => {
+                    consoleOutput.innerHTML = '';
+                    logIndex = 0;
+                    addLog();
+                }, 5000);
+                return;
+            }
+
+            const log = logs[logIndex];
+            const entry = document.createElement('div');
+            entry.className = 'log-entry';
+            const color = {
+                INFO: "#5D43D2",
+                PROCESS: "#27C93F",
+                AUDIT: "#FFBD2E",
+                WARN: "#FFBD2E",
+                ERROR: "#FF5F56",
+                CRITICAL: "#FF5F56",
+                HEAL: "#EEECFB",
+                SUCCESS: "#27C93F",
+                FINAL: "#5D43D2"
+            }[log.type];
+
+            entry.innerHTML = \`
+                <span class=\"log-time\">\${new Date().toLocaleTimeString([], {hour12: false, hour: '2-digit', minute:'2-digit', second:'2-digit'})}</span>
+                <span class=\"log-tag\" style=\"color: \${color}\">[\${log.tag}]</span>
+                <span class=\"log-msg\">\${log.msg}</span>
+            \`;
+            consoleOutput.appendChild(entry);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            
+            logIndex++;
+            setTimeout(addLog, 1500 + Math.random() * 1000);
+        }
+        
+        // Start simulation when section is visible
+        const demoObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && logIndex === 0) addLog();
+        }, { threshold: 0.5 });
+        demoObserver.observe(document.getElementById('clinical-demo'));
+
+        fetchRepos();
+    </script>
+</body>
+</html>
