@@ -228,11 +228,11 @@
 
     <div class="grain"></div>
     <nav class="nav-dock">
-        <a href=\"#identity\">Identity</a>
-        <a href=\"#diagnostic\">Diagnostic</a>
-        <a href=\"#clinical-demo\">Live Demo</a>
-        <a href=\"#ecosystem\">Ecosystem</a>
-        <a href=\"https://trochlea.online/\">Network</a>
+        <a href=\"#identity">Identity</a>
+        <a href=\"#diagnostic">Diagnostic</a>
+        <a href=\"#clinical-demo">Live Demo</a>
+        <a href=\"#ecosystem">Ecosystem</a>
+        <a href=\"https://trochlea.online/">Network</a>
     </nav>
 
     <canvas id="aether-canvas"></canvas>
@@ -365,18 +365,18 @@
     <div id="ecosystem" class="section-block" style="background: white;">
         <div class="section-label reveal">Autonomous Ecosystem Matrix</div>
         <div id="repo-container" class="repo-grid">
-            <div style=\"padding: 120px; text-align: center; color: #CCC;\">Synchronizing APEX Assets...</div>
+            <div style="padding: 120px; text-align: center; color: #CCC;">Synchronizing APEX Assets...</div>
         </div>
     </div>
 
     <footer>
         <div class="reveal">
-            <div style=\"font-size: 4rem; font-weight: 300; letter-spacing: -0.05em; margin-bottom: 20px;\">Panther</div>
-            <p style=\"opacity: 0.5; max-width: 400px; line-height: 1.6;\">Clinical AI Architect. Synthesizing medical intelligence with autonomous engineering protocols.</p>
+            <div style="font-size: 4rem; font-weight: 300; letter-spacing: -0.05em; margin-bottom: 20px;">Panther</div>
+            <p style="opacity: 0.5; max-width: 400px; line-height: 1.6;">Clinical AI Architect. Synthesizing medical intelligence with autonomous engineering protocols.</p>
         </div>
-        <div style=\"text-align: right;\">
-            <div style=\"color: var(--indigo); font-weight: 700; margin-bottom: 15px;\">INTEGRITY: APEX VERIFIED</div>
-            <p style=\"opacity: 0.3; font-size: 0.8rem;\">&copy; 2026 PANTHER ARCHITECTURAL CORE</p>
+        <div style="text-align: right;">
+            <div style="color: var(--indigo); font-weight: 700; margin-bottom: 15px;">INTEGRITY: APEX VERIFIED</div>
+            <p style="opacity: 0.3; font-size: 0.8rem;">&copy; 2026 PANTHER ARCHITECTURAL CORE</p>
         </div>
     </footer>
 
@@ -457,12 +457,12 @@
                     el.target = '_blank';
                     el.className = 'repo-card reveal';
                     el.innerHTML = `
-                        <div style=\"font-size: 0.7rem; font-weight: 700; color: var(--indigo); opacity: 0.5; margin-bottom: 24px;\">ID: ${repo.id}</div>
+                        <div style="font-size: 0.7rem; font-weight: 700; color: var(--indigo); opacity: 0.5; margin-bottom: 24px;">ID: ${repo.id}</div>
                         <h3>${repo.name}</h3>
-                        <p style=\"color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 40px; min-height: 80px;\">${repo.description || "Apex autonomous medical reasoning substrate optimized for clinical safety."}</p>
-                        <div style=\"display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F1F1F1; padding-top: 30px;\">
-                            <span class=\"badge-v\">APEX VERIFIED</span>
-                            <span style=\"font-size: 0.8rem; color: #999;\">${new Date(repo.pushed_at).getFullYear()}</span>
+                        <p style="color: #666; font-size: 1rem; line-height: 1.6; margin-bottom: 40px; min-height: 80px;">${repo.description || "Apex autonomous medical reasoning substrate optimized for clinical safety."}</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #F1F1F1; padding-top: 30px;">
+                            <span class="badge-v">APEX VERIFIED</span>
+                            <span style="font-size: 0.8rem; color: #999;">${new Date(repo.pushed_at).getFullYear()}</span>
                         </div>
                     `;
                     container.appendChild(el);
@@ -480,7 +480,7 @@
                     });
                 });
             } catch (e) {
-                container.innerHTML = '<div style=\"padding: 100px; color: red;\">Aether Connectivity Split.</div>';
+                container.innerHTML = '<div style="padding: 100px; color: red;">Aether Connectivity Split.</div>';
             }
         }
         // --- Clinical Demo Simulation ---
